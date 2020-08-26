@@ -1,19 +1,21 @@
 function pull_recent(){
-    let dump_loc = document.getElementById('dump_loc');
-
+    
     fetch('https://haveibeenpwned.com/api/v3/breaches')
         .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            handel_data(data);
-        });
+        .then(breach_objects => {
+            console.log(breach_objects)
+            // Lit sort
+            let recent_breaches = breach_objects.sort((date1,date2)=>new Date(date1['AddedDate']).getTime() - new Date(date2['AddedDate']).getTime())
+            console.log("BREACH => ", recent_breaches);
+            return recent_breaches
+        })
+        .then(sorted_stream => {
+            handel_data(sorted_stream);
+        })
 }
 
 function handel_data(data){
-   // console.log("TOTAL RECORDS => ", data['length']);
     let total_records = data['length'];
-    //console.log("MOST RECENT BREACH => ", data[total_records - 1]);
-
     let recent_breaches = [
         data[total_records - 1],
         data[total_records - 2],
@@ -27,7 +29,6 @@ function handel_data(data){
     // LOOP THROUGH RECENT RECORDS
 
     recent_breaches.forEach(breach => {
-        //console.log("Breach =>", breach);
 
         let breach_title = breach['Name'];
         let added_date = breach['AddedDate'].split("T")[0];
@@ -61,11 +62,7 @@ function handel_data(data){
                                     "</div>"
     });
 
-
-}
-
-function test_sort(dates) {
-
+    
 }
 
 pull_recent();
