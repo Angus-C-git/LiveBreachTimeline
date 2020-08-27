@@ -42,6 +42,7 @@ function handel_data(data){
 
         let breached_date = breach['BreachDate'];
 
+        //TODO => Clean up arragment (Added Date Vs Breach Date) font awesome icons
         inject_point.innerHTML +=   "<div class='cd-timeline-block'>" +
                                         "<div class='cd-timeline-img cd-picture'>" +
                                     "</div>" +
@@ -49,7 +50,7 @@ function handel_data(data){
                                             "<h2 id='Name'>" + breach_title + "</h2>" +
                                                 "<div class='timeline-content-info'>" +
                                                 "<span id='AddedDate' class='timeline-content-info-title'>" +
-                                                    "<i class='fa fa-certificate' aria-hidden='true'></i>" +
+                                                    "<i class='fas fa-calendar-day'></i> " +
                                                     added_date +
                                                 "</span>" +
                                                 "</div>" +
@@ -57,7 +58,7 @@ function handel_data(data){
                                             "<ul id='DataClasses' class='content-skills'>" +
                                                 list_string +
                                             "</ul>" +
-                                            "<span class='cd-date'>Breached => <span id='BreachDate'>" + breached_date + "</span></span>" +
+                                            "<span class='cd-date'><i class='fas fa-calendar-times'></i> <span id='BreachDate'>" + breached_date + "</span></span>" +
                                         "</div>" +
                                     "</div>"
     });
