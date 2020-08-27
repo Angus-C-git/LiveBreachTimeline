@@ -3,10 +3,9 @@ function pull_recent(){
     fetch('https://haveibeenpwned.com/api/v3/breaches')
         .then(response => response.json())
         .then(breach_objects => {
-            console.log(breach_objects)
+            
             // Lit sort
-            let recent_breaches = breach_objects.sort((date1,date2)=>new Date(date1['AddedDate']).getTime() - new Date(date2['AddedDate']).getTime())
-            console.log("BREACH => ", recent_breaches);
+            let recent_breaches = breach_objects.sort((date1,date2)=>new Date(date1['AddedDate']).getTime() - new Date(date2['AddedDate']).getTime());
             return recent_breaches
         })
         .then(sorted_stream => {
@@ -49,8 +48,8 @@ function handel_data(data){
                                         "<div class='cd-timeline-content'>" +
                                             "<h2 id='Name'>" + breach_title + "</h2>" +
                                                 "<div class='timeline-content-info'>" +
-                                                "<span id='AddedDate' class='timeline-content-info-title'>" +
-                                                    "<i class='fas fa-calendar-day'></i> " +
+                                                "<span id='AddedDate' class='timeline-content-info-title tooltip'>" +
+                                                    "<i class='fas fa-calendar-day'></i><span class='tooltiptext'>Added Date</span> " +
                                                     added_date +
                                                 "</span>" +
                                                 "</div>" +
@@ -58,7 +57,7 @@ function handel_data(data){
                                             "<ul id='DataClasses' class='content-skills'>" +
                                                 list_string +
                                             "</ul>" +
-                                            "<span class='cd-date'><i class='fas fa-calendar-times'></i> <span id='BreachDate'>" + breached_date + "</span></span>" +
+                                            "<span class='cd-date'><i class='fas fa-calendar-times'></i> <span id='BreachDate' class='tooltip'>" + breached_date + "<span class='tooltiptext'>Breached Date</span></span></span>" +
                                         "</div>" +
                                     "</div>"
     });
