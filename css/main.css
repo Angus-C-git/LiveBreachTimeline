@@ -21,6 +21,11 @@ html, body {
   clear: both;
 }
 
+
+a {
+  color: #00BFA5;
+}
+
 /* -------------------------------- 
 
 Main components 
